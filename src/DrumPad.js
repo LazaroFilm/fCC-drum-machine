@@ -1,8 +1,7 @@
-import { findAllByTestId } from "@testing-library/react";
 import React, { Component } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
+import Display, { updateDisplay } from "./Display";
 
-const test = "Hello World";
 const pads = {
   Q: {
     sound: `Chord 1`,
@@ -43,6 +42,9 @@ const pads = {
 };
 
 class DrumPad extends Component {
+  updateChildDisplay(text) {
+    updateDisplay(text);
+  }
   makeButton(padName) {
     return (
       <Col className="p-1">
@@ -54,8 +56,6 @@ class DrumPad extends Component {
           onClick={this.handleClick}
         >
           {padName}
-          <br />
-          {pads[padName].sound}
           <audio
             className="clip"
             id={`audioClip${padName}`}
@@ -67,14 +67,13 @@ class DrumPad extends Component {
     );
   }
 
-  handleClick(event) {
-    console.log(event.target.id);
-
-    const clip = document.getElementById(`audioClip${event.target.id}`);
-    // console.log(clip);
-    console.log(`clicked!`);
-    // console.log(pads["Q"].sound);
-    clip.play();
+  handleClick(e) {
+    const padName = e.target.id;
+    const audioClip = document.getElementById(`audioClip${padName}`);
+    console.log(`${padName} clicked!`);
+    audioClip.load();
+    audioClip.play();
+    this.updateChildDisplay(pads[padName].sound);
   }
 
   render() {
