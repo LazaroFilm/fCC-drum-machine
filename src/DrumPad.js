@@ -58,7 +58,7 @@ class DrumPad extends Component {
           {pads[padName].sound}
           <audio
             className="clip"
-            id="audioClip"
+            id={`audioClip${padName}`}
             src={pads[padName].url}
             type="audio/mpeg"
           ></audio>
@@ -67,11 +67,14 @@ class DrumPad extends Component {
     );
   }
 
-  handleClick() {
-    const audioClip = document.getElementById("audioClip");
+  handleClick(event) {
+    console.log(event.target.id);
+
+    const clip = document.getElementById(`audioClip${event.target.id}`);
+    // console.log(clip);
     console.log(`clicked!`);
-    console.log(pads["Q"].sound);
-    audioClip.play();
+    // console.log(pads["Q"].sound);
+    clip.play();
   }
 
   render() {
