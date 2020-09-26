@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
-import Display, { updateDisplay } from "./Display";
 
 const pads = {
   Q: {
@@ -42,9 +41,6 @@ const pads = {
 };
 
 class DrumPad extends Component {
-  updateChildDisplay(text) {
-    updateDisplay(text);
-  }
   makeButton(padName) {
     return (
       <Col className="p-1">

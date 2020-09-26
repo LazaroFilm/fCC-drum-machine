@@ -1,18 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-// import App from "./App";
-import Display from "./Display";
-import DrumPad from "./DrumPad";
+import App from "./App";
+// import Display from "./Display";
+// import DrumPad from "./DrumPad";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
   <React.StrictMode>
     <div id="drum-machine">
-      <Display />
-      <DrumPad />
-      {/* <App /> */}
+      {/* <Display />
+      <DrumPad /> */}
+      <App />
     </div>
   </React.StrictMode>,
   document.getElementById("root")
