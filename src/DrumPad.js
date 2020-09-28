@@ -104,7 +104,6 @@ class DrumPad extends Component {
   render() {
     return (
       <div>
-        Drum Pad
         <br />
         <Container>
           <Row>
