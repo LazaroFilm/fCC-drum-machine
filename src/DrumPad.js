@@ -49,7 +49,10 @@ class DrumPad extends Component {
           id={`pad${padName}`}
           variant="primary btn-lg btn-block py-5"
           type="submit"
-          onClick={this.handleClick}
+          onClick={() => {
+            this.handleDisplay();
+            this.handleClick();
+          }}
           onKeyDown={this.keyPressed}
         >
           {padName}
@@ -95,6 +98,7 @@ class DrumPad extends Component {
     console.log(e.target.id);
     const padName = e.target.id;
     const clipName = padName.charAt(padName.length - 1);
+
     const audioClip = document.getElementById(clipName);
     console.log(`${padName} clicked!`);
     audioClip.currentTime = 0;
