@@ -81,7 +81,9 @@ class DrumPad extends Component {
       case "X":
       case "C":
         console.log(audioClip.play());
-        audioClip.load();
+        // audioClip.load();
+        // audioClip.pause()
+        audioClip.currentTime = 0;
         audioClip.play();
         break;
       default:
@@ -94,7 +96,7 @@ class DrumPad extends Component {
     const padName = e.target.id;
     const audioClip = document.getElementById(`audioClip${padName}`);
     console.log(`${padName} clicked!`);
-    audioClip.load();
+    audioClip.currentTime = 0;
     audioClip.play();
   }
 
