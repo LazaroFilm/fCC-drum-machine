@@ -46,7 +46,7 @@ class DrumPad extends Component {
       <Col className="p-1">
         <Button
           className="drum-pad"
-          id={padName}
+          id={`pad${padName}`}
           variant="primary btn-lg btn-block py-5"
           type="submit"
           onClick={this.handleClick}
@@ -55,7 +55,7 @@ class DrumPad extends Component {
           {padName}
           <audio
             className="clip"
-            id={`audioClip${padName}`}
+            id={padName}
             src={pads[padName].url}
             type="audio/mpeg"
           ></audio>
@@ -68,7 +68,7 @@ class DrumPad extends Component {
     console.log(e);
     const padName = e.key.toUpperCase();
     console.log(padName);
-    const audioClip = document.getElementById(`audioClip${padName}`);
+    const audioClip = document.getElementById(padName);
     console.log(`${padName} pressed!`);
     switch (padName) {
       case "Q":
@@ -81,8 +81,7 @@ class DrumPad extends Component {
       case "X":
       case "C":
         console.log(audioClip.play());
-        // audioClip.load();
-        // audioClip.pause()
+
         audioClip.currentTime = 0;
         audioClip.play();
         break;
@@ -93,8 +92,10 @@ class DrumPad extends Component {
   }
 
   handleClick(e) {
+    console.log(e.target.id);
     const padName = e.target.id;
-    const audioClip = document.getElementById(`audioClip${padName}`);
+    const clipName = padName.charAt(padName.length - 1);
+    const audioClip = document.getElementById(clipName);
     console.log(`${padName} clicked!`);
     audioClip.currentTime = 0;
     audioClip.play();
