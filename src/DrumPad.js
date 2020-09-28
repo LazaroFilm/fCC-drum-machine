@@ -41,6 +41,8 @@ const pads = {
 };
 
 class DrumPad extends Component {
+  // const mapStateToProps = state
+
   makeButton(padName) {
     return (
       <Col className="p-1">
@@ -50,6 +52,7 @@ class DrumPad extends Component {
           variant="primary btn-lg btn-block py-5"
           type="submit"
           onClick={this.handleClick}
+          onKeyDown={this.keyPressed}
         >
           {padName}
           <audio
@@ -63,13 +66,39 @@ class DrumPad extends Component {
     );
   }
 
+  keyPressed(e) {
+    console.log(e);
+    const padName = e.key.toUpperCase();
+    console.log(padName);
+    const audioClip = document.getElementById(`audioClip${padName}`);
+    console.log(`${padName} pressed!`);
+    switch (padName) {
+      case "Q":
+      case "W":
+      case "E":
+      case "A":
+      case "S":
+      case "D":
+      case "Z":
+      case "X":
+      case "C":
+        console.log(audioClip.play());
+        audioClip.load();
+        audioClip.play();
+        break;
+      default:
+        console.log(`Wrong key ${padName}`);
+        break;
+    }
+  }
+
   handleClick(e) {
     const padName = e.target.id;
     const audioClip = document.getElementById(`audioClip${padName}`);
     console.log(`${padName} clicked!`);
     audioClip.load();
     audioClip.play();
-    this.updateChildDisplay(pads[padName].sound);
+    // this.updateChildDisplay(pads[padName].sound);
   }
 
   render() {

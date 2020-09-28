@@ -6,14 +6,42 @@ import App from "./App";
 // import DrumPad from "./DrumPad";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 
+// STORE -->  globalized state
+
+// ACTION --> change text
+const changeText = () => {
+  return {
+    type: "CHANGETEXT",
+  };
+};
+
+// REDUCER
+const display = (state = "", action) => {
+  switch (action.type) {
+    case "CHANGETEXT":
+      return "new message";
+  }
+};
+
+let store = createStore(
+  display,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+store.subscribe(() => console.log(store.getState()));
+
+// DISPATCH
+store.dispatch(changeText());
 ReactDOM.render(
   <React.StrictMode>
-    <div id="drum-machine">
+    <Provider store={store} id="drum-machine">
       {/* <Display />
       <DrumPad /> */}
       <App />
-    </div>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
