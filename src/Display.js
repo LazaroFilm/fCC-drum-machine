@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import { Alert, Navbar } from "react-bootstrap";
 
 class Display extends Component {
-  state = {
-    text: "Initial text",
-  };
   render() {
     return (
       <Navbar bg="light" expand="lg">

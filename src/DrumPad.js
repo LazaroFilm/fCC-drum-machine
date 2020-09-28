@@ -96,7 +96,6 @@ class DrumPad extends Component {
     console.log(`${padName} clicked!`);
     audioClip.load();
     audioClip.play();
-    // this.updateChildDisplay(pads[padName].sound);
   }
 
   render() {
